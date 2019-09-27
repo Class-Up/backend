@@ -1,6 +1,6 @@
 # Class Up API
 
-![NodeJS Badge](https://img.shields.io/badge/NodeJs-10.16-green?style=flat) ![Express Badge](https://img.shields.io/badge/Express-4.17.1-lightgrey?style=flat) ![IBM Cloud Badge](https://img.shields.io/badge/IBM-Cloud-blue?style=flat) ![JS Standard Badge](https://img.shields.io/badge/Standard-JS-yellow?style=flat) 
+![NodeJS Badge](https://img.shields.io/badge/NodeJs-10.16-green?style=flat) ![Express Badge](https://img.shields.io/badge/Express-4.17.1-lightgrey?style=flat) ![IBM Cloud Badge](https://img.shields.io/badge/IBM-Cloud-blue?style=flat) ![JS Standard Badge](https://img.shields.io/badge/Standard-JS-yellow?style=flat) ![Status Badge](https://img.shields.io/badge/Status-development-red?style=flat) 
 
 ### API Up is the backend for the project Class Up.
 
