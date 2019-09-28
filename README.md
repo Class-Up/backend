@@ -6,7 +6,7 @@
 
 Build with technologies like NodeJs, ExpressJs and IBM Watson, and proud use of StandardJS.
 
-It makes all the magic that let you get done with your school organization and process the nedded data to keep you motivated to be a better student and make the teachers know how to improbe ther teching skills.
+It makes all the magic that lets you get done with your school organization and process the needed data to keep you motivated to be a better student and make the teachers know how to improbe their teaching skills.
 
 ---
 
