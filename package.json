@@ -37,10 +37,6 @@
     "url": "https://github.com/School-Enhansment/backend/issues"
   },
   "homepage": "https://github.com/School-Enhansment/backend#readme",
-<<<<<<< HEAD
-  "dependencies": {
-    "mongoose": "^5.7.1"
-=======
   "devDependencies": {
     "husky": "^3.0.5",
     "nodemon": "^1.19.2",
@@ -48,6 +44,5 @@
   },
   "dependencies": {
     "express": "^4.17.1"
->>>>>>> develop
   }
 }
