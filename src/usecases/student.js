@@ -13,8 +13,13 @@ function deleteById (id) {
   return Student.findByIdAndUpdate(id, { isDeleted: true })
 }
 
+function updateById (id, newData) {
+  return Student.findByIdAndUpdate(id, newData)
+}
+
 module.exports = {
   getAll,
   getById,
-  deleteById
+  deleteById,
+  updateById
 }
