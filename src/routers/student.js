@@ -51,4 +51,27 @@ router.postt('/', auth, async (request, response) => {
   }
 })
 
+router.post('/login', auth, async (request, response) => {
+  try {
+    const { email, password } = request.body
+    const token = await student.login(email, password)
+    response.json({
+      success: true,
+      message: 'Take your token',
+      data: {
+        token
+      }
+    })
+  } catch (error) {
+    response.status(401)
+    response.json({
+      success: false,
+      message: 'something failed',
+      data: {
+        error: error.message
+      }
+    })
+  }
+})
+
 module.exports = router
