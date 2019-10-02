@@ -29,7 +29,27 @@ const studentSchema = mongoose.Schema({
     required: true,
     pattern: /^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\d@$!%*?&]{8,}$/
   },
-
+  gender: {
+    type: String
+  },
+  schoolGrade: {
+    type: String
+  },
+  medals: {
+    type: [String]
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false
+  },
+  dateCreated: {
+    type: Date,
+    default: new Date()
+  },
+  dateUpdated: {
+    type: Date,
+    default: new Date()
+  }
 })
 
 module.exports = mongoose.model('Student', studentSchema)
