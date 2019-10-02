@@ -74,4 +74,26 @@ router.post('/login', auth, async (request, response) => {
   }
 })
 
+router.delete('/:id', auth, async (request, response) => {
+  try {
+    const { id } = request.params
+
+    const deletedStudent = await student.deleteById(id)
+
+    response.json({
+      success: true,
+      message: 'Student deleted',
+      data: {
+        student: deletedStudent
+      }
+    })
+  } catch (error) {
+    response.json({
+      success: false,
+      message: 'Something failed',
+      error: error.message
+    })
+  }
+})
+
 module.exports = router
