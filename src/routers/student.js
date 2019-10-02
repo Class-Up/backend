@@ -29,4 +29,26 @@ router.get('/', auth, async (request, response) => {
   }
 })
 
+router.postt('/', auth, async (request, response) => {
+  try {
+    const newStudent = await student.create(request.body)
+    response.json({
+      success: true,
+      messaje: 'Student Created',
+      data: {
+        student: newStudent
+      }
+    })
+  } catch (error) {
+    response.status(401)
+    response.json({
+      success: false,
+      message: 'something failed',
+      data: {
+        error: error.message
+      }
+    })
+  }
+})
+
 module.exports = router
