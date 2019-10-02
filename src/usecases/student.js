@@ -1,8 +1,21 @@
 
+const bcrypt = require('../lib/bcrypt')
+
 const Student = require('../models/student')
 
-function create (newStudent) {
-  return Student.create(newStudent)
+function create ({ firstName, lastName, email, picture, age, password, gender, medals, schoolGrade }) {
+  const hash = bcrypt.hash(password)
+  return Student.create({
+    firstName,
+    lastName,
+    email,
+    picture,
+    age,
+    password: hash,
+    gender,
+    medals,
+    schoolGrade
+  })
 }
 
 function getAll () {
