@@ -1,6 +1,10 @@
 
 const Student = require('../models/student')
 
+function create (newStudent) {
+  return Student.create(newStudent)
+}
+
 function getAll () {
   return Student.find()
 }
@@ -18,6 +22,7 @@ function updateById (id, newData) {
 }
 
 module.exports = {
+  create,
   getAll,
   getById,
   deleteById,
