@@ -5,6 +5,11 @@ function getAll () {
   return Student.find()
 }
 
+function getById (id) {
+  return Student.findById(id)
+}
+
 module.exports = {
-  getAll
+  getAll,
+  getById
 }
