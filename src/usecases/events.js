@@ -13,6 +13,10 @@ function getAll () {
   return Event.find()
 }
 
+function getManyByStudentId (studentId) {
+  return Event.find({ studentId })
+}
+
 function getById (id) {
   return Event.findById(id)
 }
@@ -28,6 +32,7 @@ function updateById (id, newData) {
 module.exports = {
   create,
   getAll,
+  getManyByStudentId,
   getById,
   deleteById,
   updateById
