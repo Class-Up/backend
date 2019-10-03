@@ -29,7 +29,7 @@ router.get('/', auth, async (request, response) => {
   }
 })
 
-router.postt('/', auth, async (request, response) => {
+router.post('/', auth, async (request, response) => {
   try {
     const newStudent = await student.create(request.body)
     response.json({

@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const noteSchema = mongoose.Schema({
   studentId: {
-    type: Int,
+    type: String,
     required: true,
     minlength: 5
   },

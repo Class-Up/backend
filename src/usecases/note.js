@@ -1,8 +1,7 @@
 
-const Student = require('../models/note')
+const Note = require('../models/note')
 
 function create({ tittle, body }) {
-
   return Note.create({
     tittle,
     body
