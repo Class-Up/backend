@@ -17,7 +17,6 @@ router.post('/notes', auth, async (request, response) => {
         note: newNote
       }
     })
-
   } catch (error) {
     response.json({
       success: false,
@@ -37,7 +36,6 @@ router.get('/notes', auth, async (request, response) => {
         notes: allNotes
       }
     })
-
   } catch (error) {
     response.json({
       success: false,
@@ -58,7 +56,6 @@ router.get('/notes/:id', auth, async (request, response) => {
         note: idNote
       }
     })
-
   } catch (error) {
     response.json({
       success: false,
@@ -81,7 +78,6 @@ router.patch('/notes/:id', auth, async (request, response) => {
         note: updatedNote
       }
     })
-
   } catch (error) {
     response.json({
       success: false,
