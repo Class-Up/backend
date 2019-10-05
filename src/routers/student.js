@@ -12,7 +12,7 @@ router.get('/', auth, async (request, response) => {
     const allStudents = await student.getAll()
     response.json({
       success: true,
-      messaje: 'All students',
+      message: 'All students',
       data: {
         students: allStudents
       }
@@ -29,12 +29,12 @@ router.get('/', auth, async (request, response) => {
   }
 })
 
-router.postt('/', auth, async (request, response) => {
+router.post('/', auth, async (request, response) => {
   try {
     const newStudent = await student.create(request.body)
     response.json({
       success: true,
-      messaje: 'Student Created',
+      message: 'Student Created',
       data: {
         student: newStudent
       }
