@@ -5,22 +5,18 @@ const medalSchema = mongoose.Schema({
   studentId: {
     type: String,
     required: true,
-    minlength: 5
   },
   name: {
     type: String,
-    required: false,
-    minlength: 5
+    required: true,
   },
-  name: {
+  image: {
     type: String,
-    required: false,
-    minlength: 5
+    required: true,
   },
   value: {
-    type: int,
+    type: Number,
     required: true,
-    minlength: 5
   }
 })
 

@@ -1,7 +1,7 @@
 
 const express = require('express')
 
-const note = require('../usecases/note')
+const note = require('../usecases/notes')
 
 const router = express.Router()
 
