@@ -5,12 +5,12 @@ const studentSchema = mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    minLength: 2
+    minlength: 2
   },
   lastName: {
     type: String,
     required: true,
-    minLength: 2
+    minlength: 2
   },
   picture: {
     type: String
