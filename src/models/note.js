@@ -4,18 +4,15 @@ const mongoose = require('mongoose')
 const noteSchema = mongoose.Schema({
   studentId: {
     type: String,
-    required: true,
-    minlength: 5
+    required: true
   },
   title: {
     type: String,
-    required: false,
-    minlength: 5
+    required: false
   },
   body: {
     type: String,
-    required: true,
-    minlength: 5
+    required: true
   },
   dateCreated: {
     type: Date,
