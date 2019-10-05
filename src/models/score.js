@@ -1,16 +1,11 @@
-
 const mongoose = require('mongoose')
 
-const medalSchema = mongoose.Schema({
+const scoreSchema = mongoose.Schema({
+  scoreId: {
+    type: String,
+    required: true
+  },
   studentId: {
-    type: String,
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  image: {
     type: String,
     required: true
   },
@@ -20,4 +15,4 @@ const medalSchema = mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Medal', medalSchema)
+module.exports = mongoose.model('Score', scoreSchema)
