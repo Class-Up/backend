@@ -7,7 +7,7 @@ const auth = require('../middlewares/auth')
 
 const router = express.Router()
 
-router.post('/medals', auth, async (request, response) => {
+router.post('/', async (request, response) => {
   try {
     const newMedal = await medal.create(request.body)
     response.json({
@@ -26,7 +26,7 @@ router.post('/medals', auth, async (request, response) => {
   }
 })
 
-router.get('/medals', auth, async (request, response) => {
+router.get('/', auth, async (request, response) => {
   try {
     const allMedals = await medal.getAll()
     response.json({
@@ -45,7 +45,7 @@ router.get('/medals', auth, async (request, response) => {
   }
 })
 
-router.get('/medals/:id', auth, async (request, response) => {
+router.get('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
     const idMedal = await medal.getById(id)
@@ -65,7 +65,7 @@ router.get('/medals/:id', auth, async (request, response) => {
   }
 })
 
-router.patch('/medals/:id', auth, async (request, response) => {
+router.patch('/:id', async (request, response) => {
   try {
     const { id } = request.params
 
@@ -73,7 +73,7 @@ router.patch('/medals/:id', auth, async (request, response) => {
 
     response.json({
       success: true,
-      message: 'Changes saved',
+      message: 'Medal Updated',
       data: {
         medal: updatedMedal
       }
@@ -87,7 +87,7 @@ router.patch('/medals/:id', auth, async (request, response) => {
   }
 })
 
-router.delete('/', auth, async (request, response) => {
+router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
 

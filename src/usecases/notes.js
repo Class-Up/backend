@@ -1,5 +1,5 @@
 
-const Note = require('../models/note')
+const Note = require('../models/notes')
 
 function create ({ tittle, body }) {
   return Note.create({
