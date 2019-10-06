@@ -19,7 +19,6 @@ app.use('/medals', medalsRouter)
 app.use('/scores', scoresRouter)
 app.use('/topics', topicsRouter)
 
-
 app.get('/', (request, response) => {
   response.json({
     message: 'Hola Mundo'
