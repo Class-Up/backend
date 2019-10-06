@@ -7,7 +7,7 @@ const auth = require('../middlewares/auth')
 
 const router = express.Router()
 
-router.post('/scores', auth, async (request, response) => {
+router.post('/', auth, async (request, response) => {
   try {
     const newScore = await score.create(request.body)
     response.json({
@@ -26,7 +26,7 @@ router.post('/scores', auth, async (request, response) => {
   }
 })
 
-router.get('/scores', auth, async (request, response) => {
+router.get('/', auth, async (request, response) => {
   try {
     const allScores = await score.getAll()
     response.json({
@@ -45,7 +45,7 @@ router.get('/scores', auth, async (request, response) => {
   }
 })
 
-router.get('/scores/:id', auth, async (request, response) => {
+router.get('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
     const idScore = await score.getById(id)
@@ -65,7 +65,7 @@ router.get('/scores/:id', auth, async (request, response) => {
   }
 })
 
-router.patch('/scores/:id', auth, async (request, response) => {
+router.patch('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
 

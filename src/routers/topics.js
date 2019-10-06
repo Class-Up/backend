@@ -7,7 +7,7 @@ const router = express.Router()
 
 const auth = require('../middlewares/auth')
 
-router.post('/topics', auth, async (request, response) => {
+router.post('/', auth, async (request, response) => {
   try {
     const newTopic = await topic.create(request.body)
     response.json({
@@ -26,7 +26,7 @@ router.post('/topics', auth, async (request, response) => {
   }
 })
 
-router.get('/topics', auth, async (request, response) => {
+router.get('/', auth, async (request, response) => {
   try {
     const allTopics = await topic.getAll()
     response.json({
@@ -45,7 +45,7 @@ router.get('/topics', auth, async (request, response) => {
   }
 })
 
-router.get('/topics/:id', auth, async (request, response) => {
+router.get('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
     const idTopic = await topic.getById(id)
@@ -65,7 +65,7 @@ router.get('/topics/:id', auth, async (request, response) => {
   }
 })
 
-router.patch('/topics/:id', auth, async (request, response) => {
+router.patch('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
 
@@ -73,7 +73,7 @@ router.patch('/topics/:id', auth, async (request, response) => {
 
     response.json({
       success: true,
-      message: 'Changes saved',
+      message: 'Topic Updated',
       data: {
         topic: updatedTopic
       }
