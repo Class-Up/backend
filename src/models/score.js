@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const scoreSchema = mongoose.Schema({
-  scoreId: {
-    type: String,
-    required: true
-  },
   studentId: {
     type: String,
     required: true

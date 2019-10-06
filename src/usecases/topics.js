@@ -1,25 +1,26 @@
 
 const Topic = require('../models/topic')
 
-function create ({ name }) {
+function create({ studentId, name }) {
   return Topic.create({
+    studentId,
     name
   })
 }
 
-function getAll () {
+function getAll() {
   return Topic.find()
 }
 
-function getById (id) {
+function getById(id) {
   return Topic.findById(id)
 }
 
-function updateById (id, newData) {
+function updateById(id, newData) {
   return Topic.findByIdAndUpdate(id, newData)
 }
 
-function deleteById (id) {
+function deleteById(id) {
   return Topic.findByIdAndDelete(id)
 }
 

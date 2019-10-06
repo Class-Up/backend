@@ -87,7 +87,7 @@ router.patch('/:id', auth, async (request, response) => {
   }
 })
 
-router.delete('/', auth, async (request, response) => {
+router.delete('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
 
