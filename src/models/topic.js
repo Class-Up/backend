@@ -1,14 +1,14 @@
 const mongoose = require('mongoose')
 
-const scoreSchema = mongoose.Schema({
+const topicSchema = mongoose.Schema({
   studentId: {
     type: String,
     required: true
   },
-  value: {
+  name: {
     type: Number,
     required: true
   }
 })
 
-module.exports = mongoose.model('Score', scoreSchema)
+module.exports = mongoose.model('Topic', topicSchema)

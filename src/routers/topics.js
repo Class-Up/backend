@@ -1,7 +1,7 @@
 
 const express = require('express')
 
-const note = require('../usecases/notes')
+const topic = require('../usecases/topics')
 
 const router = express.Router()
 
@@ -9,12 +9,12 @@ const auth = require('../middlewares/auth')
 
 router.post('/', auth, async (request, response) => {
   try {
-    const newNote = await note.create(request.body)
+    const newTopic = await topic.create(request.body)
     response.json({
       success: true,
-      message: 'New Note Created',
+      message: 'New Topic Created',
       data: {
-        note: newNote
+        topic: newTopic
       }
     })
   } catch (error) {
@@ -28,12 +28,12 @@ router.post('/', auth, async (request, response) => {
 
 router.get('/', auth, async (request, response) => {
   try {
-    const allNotes = await note.getAll()
+    const allTopics = await topic.getAll()
     response.json({
       success: true,
-      message: 'All The Notes',
+      message: 'All The Topics',
       data: {
-        notes: allNotes
+        topics: allTopics
       }
     })
   } catch (error) {
@@ -48,12 +48,12 @@ router.get('/', auth, async (request, response) => {
 router.get('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
-    const idNote = await note.getById(id)
+    const idTopic = await topic.getById(id)
     response.json({
       success: true,
-      message: 'This Is Your Note',
-      data: {
-        note: idNote
+      message: 'This Is Your Topic',
+      topic: {
+        note: idTopic
       }
     })
   } catch (error) {
@@ -69,13 +69,13 @@ router.patch('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
 
-    const updatedNote = await note.updateById(id)
+    const updatedTopic = await topic.updateById(id)
 
     response.json({
       success: true,
-      message: 'Note Updated',
+      message: 'Topic Updated',
       data: {
-        note: updatedNote
+        topic: updatedTopic
       }
     })
   } catch (error) {
@@ -91,13 +91,13 @@ router.delete('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
 
-    const deletedNote = await note.deleteById(id)
+    const deletedTopic = await topic.deleteById(id)
 
     response.json({
       success: true,
-      message: 'Note Deleted',
+      message: 'Topic Deleted',
       data: {
-        deletedNote: deletedNote
+        deletedTopic: deletedTopic
       }
     })
   } catch (error) {

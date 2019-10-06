@@ -1,20 +1,20 @@
 
 const express = require('express')
 
-const note = require('../usecases/notes')
-
-const router = express.Router()
+const score = require('../usecases/scores')
 
 const auth = require('../middlewares/auth')
 
+const router = express.Router()
+
 router.post('/', auth, async (request, response) => {
   try {
-    const newNote = await note.create(request.body)
+    const newScore = await score.create(request.body)
     response.json({
       success: true,
-      message: 'New Note Created',
+      message: 'New Score Added',
       data: {
-        note: newNote
+        score: newScore
       }
     })
   } catch (error) {
@@ -28,12 +28,12 @@ router.post('/', auth, async (request, response) => {
 
 router.get('/', auth, async (request, response) => {
   try {
-    const allNotes = await note.getAll()
+    const allScores = await score.getAll()
     response.json({
       success: true,
-      message: 'All The Notes',
+      message: 'All The Scores',
       data: {
-        notes: allNotes
+        scores: allScores
       }
     })
   } catch (error) {
@@ -48,12 +48,12 @@ router.get('/', auth, async (request, response) => {
 router.get('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
-    const idNote = await note.getById(id)
+    const idScore = await score.getById(id)
     response.json({
       success: true,
-      message: 'This Is Your Note',
+      message: 'This Is Your Score',
       data: {
-        note: idNote
+        score: idScore
       }
     })
   } catch (error) {
@@ -69,13 +69,13 @@ router.patch('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
 
-    const updatedNote = await note.updateById(id)
+    const updatedScore = await score.updateById(id)
 
     response.json({
       success: true,
-      message: 'Note Updated',
+      message: 'Changes saved',
       data: {
-        note: updatedNote
+        score: updatedScore
       }
     })
   } catch (error) {
@@ -91,13 +91,13 @@ router.delete('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
 
-    const deletedNote = await note.deleteById(id)
+    const deletedScore = await score.deleteById(id)
 
     response.json({
       success: true,
-      message: 'Note Deleted',
+      message: 'Score Deleted',
       data: {
-        deletedNote: deletedNote
+        deletedScore: deletedScore
       }
     })
   } catch (error) {
