@@ -4,23 +4,19 @@ const mongoose = require('mongoose')
 const medalSchema = mongoose.Schema({
   studentId: {
     type: String,
-    required: true,
-    minlength: 5
+    required: true
   },
   name: {
     type: String,
-    required: false,
-    minlength: 5
+    required: true
   },
   image: {
     type: String,
-    required: false,
-    minlength: 5
+    required: true
   },
   value: {
     type: Number,
-    required: true,
-    minlength: 5
+    required: true
   }
 })
 
