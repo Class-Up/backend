@@ -7,7 +7,7 @@ const router = express.Router()
 
 const auth = require('../middlewares/auth')
 
-router.post('/notes', auth, async (request, response) => {
+router.post('/', auth, async (request, response) => {
   try {
     const newNote = await note.create(request.body)
     response.json({
@@ -26,7 +26,7 @@ router.post('/notes', auth, async (request, response) => {
   }
 })
 
-router.get('/notes', auth, async (request, response) => {
+router.get('/', auth, async (request, response) => {
   try {
     const allNotes = await note.getAll()
     response.json({
@@ -45,7 +45,7 @@ router.get('/notes', auth, async (request, response) => {
   }
 })
 
-router.get('/notes/:id', auth, async (request, response) => {
+router.get('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
     const idNote = await note.getById(id)
@@ -65,7 +65,7 @@ router.get('/notes/:id', auth, async (request, response) => {
   }
 })
 
-router.patch('/notes/:id', auth, async (request, response) => {
+router.patch('/:id', auth, async (request, response) => {
   try {
     const { id } = request.params
 
@@ -73,7 +73,7 @@ router.patch('/notes/:id', auth, async (request, response) => {
 
     response.json({
       success: true,
-      message: 'Changes saved',
+      message: 'Note Updated',
       data: {
         note: updatedNote
       }
