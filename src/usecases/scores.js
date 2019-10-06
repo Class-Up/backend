@@ -1,26 +1,26 @@
 
 const Score = require('../models/score')
 
-function create({ studentId, value }) {
+function create ({ studentId, value }) {
   return Score.create({
     studentId,
     value
   })
 }
 
-function getAll() {
+function getAll () {
   return Score.find()
 }
 
-function getById(id) {
+function getById (id) {
   return Score.findById(id)
 }
 
-function updateById(id, newData) {
+function updateById (id, newData) {
   return Score.findByIdAndUpdate(id, newData)
 }
 
-function deleteById(id) {
+function deleteById (id) {
   return Score.findByIdAndDelete(id)
 }
 
