@@ -35,8 +35,9 @@ const taskSchema = mongoose.Schema({
     required: true
   },
   topicId: {
-    type: Number,
-    required: true
+    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'topics'
   }
 })
 
