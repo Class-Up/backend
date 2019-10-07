@@ -32,7 +32,8 @@ const taskSchema = mongoose.Schema({
   },
   grade: {
     type: Number,
-    required: true
+    required: true,
+    topicId: Number
   }
 })
 
