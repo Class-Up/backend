@@ -1,12 +1,13 @@
 
 const Task = require('../models/tasks')
 
-function create ({ title, deliveryDate, studentId, grade }) {
+function create ({ title, deliveryDate, studentId, grade, topicId }) {
   return Task.create({
     title,
     deliveryDate,
     studentId,
-    grade
+    grade,
+    topicId
   })
 }
 
