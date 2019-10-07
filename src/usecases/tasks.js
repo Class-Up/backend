@@ -6,8 +6,8 @@ function create ({ title, deliveryDate, studentId, grade, topicId }) {
     title,
     deliveryDate,
     studentId,
-    grade,
-    topicId
+    topicId,
+    grade
   })
 }
 
