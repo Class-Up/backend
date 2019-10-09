@@ -7,6 +7,7 @@ const medalsRouter = require('./routers/medals')
 const notesRouter = require('./routers/notes')
 const scoresRouter = require('./routers/scores')
 const topicsRouter = require('./routers/topics')
+const tasksRouter = require('./routers/tasks')
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use('/notes', notesRouter)
 app.use('/medals', medalsRouter)
 app.use('/scores', scoresRouter)
 app.use('/topics', topicsRouter)
+app.use('/tasks', tasksRouter)
 
 app.get('/', (request, response) => {
   response.json({
