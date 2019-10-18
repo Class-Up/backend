@@ -1,5 +1,5 @@
 
-const Medal = require('../models/medal')
+const Medal = require('../models/medals')
 
 function create ({ name, image, value }) {
   return Medal.create({
