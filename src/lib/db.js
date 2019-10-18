@@ -15,6 +15,7 @@ const uri = 'mongodb+srv://skintigth:SkinMONGO94@classup-hofdh.mongodb.net/class
 module.exports = () => mongoose.connect(
   uri,
   {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
