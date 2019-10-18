@@ -4,17 +4,50 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/School-Enhansment/backend.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "class",
+    "up",
+    "school",
+    "teacher",
+    "student",
+    "api",
+    "rest"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo '- Running standard -' && standard --fix"
+    }
+  },
+  "standard": {
+    "ignore": [
+      "playground/"
+    ]
+  },
+  "author": "Rurick Maqueo, Brenda Gonzalez, Carlos Ojeda",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/School-Enhansment/backend/issues"
   },
-  "homepage": "https://github.com/School-Enhansment/backend#readme"
+  "homepage": "https://github.com/School-Enhansment/backend#readme",
+  "devDependencies": {
+    "husky": "^3.0.5",
+    "nodemon": "^1.19.2",
+    "standard": "^14.3.1"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.3"
+  }
 }
