@@ -1,3 +1,4 @@
 applications:
   - name: ClassApi
     memory: 128M
+    buildpacks: "https://github.com/cloudfoundry/nodejs-buildpack#v1.6.52"
