@@ -11,14 +11,14 @@ const DB_NAME = process.env.DB_NAME
 // const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retry=true&w=majority`
 const uri = 'mongodb+srv://ibm_cf:KKHbf7X1UIR99ks3@classup-hofdh.mongodb.net/classup?retry=true&w=majority'
 
-console.log('Process.env:', process.env)
+// console.log('Process.env:', process.env)
 console.log('DB_USER:', DB_USER)
 console.log('DB_PASSWORD:', DB_PASSWORD)
 console.log('DB_HOST:', DB_HOST)
 console.log('DB_NAME:', DB_NAME)
 
 const appEnv = cfenv.getAppEnv()
-const appSer = cfenv.getServices()
+const appSer = appEnv.getServices()
 
 console.log('------------------------------------------------------')
 console.log('App Env:', appEnv)
