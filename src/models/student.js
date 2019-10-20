@@ -36,9 +36,6 @@ const studentSchema = mongoose.Schema({
   schoolGrade: {
     type: String
   },
-  medals: {
-    type: [String]
-  },
   isDeleted: {
     type: Boolean,
     default: false
@@ -50,6 +47,30 @@ const studentSchema = mongoose.Schema({
   dateUpdated: {
     type: Date,
     default: new Date()
+  },
+  medals: {
+    type: [{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Medal'
+    }]
+  },
+  notes: {
+    type: [{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Note'
+    }]
+  },
+  events: {
+    type: [{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Event'
+    }]
+  },
+  tasks: {
+    type: [{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Task'
+    }]
   }
 })
 
