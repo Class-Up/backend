@@ -1,6 +1,7 @@
 
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 
 const studentRouter = require('./routers/student')
 const medalsRouter = require('./routers/medals')
@@ -22,9 +23,8 @@ app.use('/topics', topicsRouter)
 app.use('/tasks', tasksRouter)
 
 app.get('/', (request, response) => {
-  response.json({
-    message: 'Hola Mundo'
-  })
+  const apiDocsHtmlPath = path.resolve(`${__dirname}/api.html`)
+  response.sendFile(apiDocsHtmlPath)
 })
 
 module.exports = app

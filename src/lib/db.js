@@ -13,6 +13,7 @@ const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retry
 module.exports = () => mongoose.connect(
   uri,
   {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
