@@ -1,7 +1,7 @@
 
 const Group = require('../models/groups')
 
-function create ({ name, teacherId, topic, students }) {
+function create ({ name, topic, students }) {
   return Group.create({
     name,
     topic,
