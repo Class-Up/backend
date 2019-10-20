@@ -17,8 +17,19 @@ function getAllTasks (groupId) {
   return Group.findById(groupId).populate('tasks')
 }
 
+async function addStudent (groupId, newStudentId) {
+  const group = await Group.findById(groupId)
+  const students = {
+    ...group.students,
+    newStudentId
+  }
+
+  return Group.findOneAndUpdate(groupId, { students })
+}
+
 module.exports = {
   create,
   getAllTasks,
-  getAllStudents
+  getAllStudents,
+  addStudent
 }
