@@ -7,13 +7,13 @@ const taskSchema = mongoose.Schema({
   },
   students: {
     type: [{
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Student'
     }]
   },
   tasks: {
     type: [{
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Task'
     }]
   },

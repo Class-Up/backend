@@ -61,19 +61,19 @@ const studentSchema = mongoose.Schema({
   },
   medals: {
     type: [{
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Medal'
     }]
   },
   notes: {
     type: [{
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Note'
     }]
   },
   events: {
     type: [{
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Event'
     }]
   },
@@ -83,14 +83,14 @@ const studentSchema = mongoose.Schema({
         type: Boolean
       },
       data: {
-        type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Task'
       }
     }]
   },
   groups: {
     type: [{
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Group'
     }]
   }
