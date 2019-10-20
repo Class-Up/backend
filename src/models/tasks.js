@@ -17,27 +17,9 @@ const taskSchema = mongoose.Schema({
     type: Date,
     required: true
   },
-  studentId: {
-    required: true,
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'students'
-  },
-  isCompleted: {
-    type: Boolean,
-    default: false
-  },
   isDeleted: {
     type: Boolean,
-    dafault: false
-  },
-  grade: {
-    type: Number,
-    required: true
-  },
-  topicId: {
-    required: true,
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'topics'
+    default: false
   }
 })
 
