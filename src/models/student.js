@@ -36,6 +36,17 @@ const studentSchema = mongoose.Schema({
   schoolGrade: {
     type: String
   },
+  learningRate: {
+    kinesthetic: {
+      type: Number
+    },
+    auditive: {
+      type: Number
+    },
+    visual: {
+      type: Number
+    }
+  },
   isDeleted: {
     type: Boolean,
     default: false
@@ -68,8 +79,19 @@ const studentSchema = mongoose.Schema({
   },
   tasks: {
     type: [{
+      finished: {
+        type: Boolean
+      },
+      data: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Task'
+      }
+    }]
+  },
+  groups: {
+    type: [{
       type: mongoose.Schema.ObjectId,
-      ref: 'Task'
+      ref: 'Group'
     }]
   }
 })
