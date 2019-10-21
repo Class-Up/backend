@@ -9,6 +9,7 @@ const notesRouter = require('./routers/notes')
 const scoresRouter = require('./routers/scores')
 const topicsRouter = require('./routers/topics')
 const tasksRouter = require('./routers/tasks')
+const teacherRouter = require('./routers/teacher')
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use('/medals', medalsRouter)
 app.use('/scores', scoresRouter)
 app.use('/topics', topicsRouter)
 app.use('/tasks', tasksRouter)
+app.use('/teachers', teacherRouter)
 
 app.get('/', (request, response) => {
   const apiDocsHtmlPath = path.resolve(`${__dirname}/api.html`)
