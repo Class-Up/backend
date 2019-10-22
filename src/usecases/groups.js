@@ -19,10 +19,10 @@ function getAllTasks (groupId) {
 
 async function addStudent (groupId, newStudentId) {
   const group = await Group.findById(groupId)
-  const students = {
+  const students = [
     ...group.students,
     newStudentId
-  }
+  ]
 
   return Group.findOneAndUpdate(groupId, { students })
 }
