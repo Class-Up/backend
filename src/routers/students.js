@@ -1,13 +1,11 @@
 
 const express = require('express')
 
-const student = require('../usecases/student')
-
-const auth = require('../middlewares/auth')
+const student = require('../usecases/students')
 
 const router = express.Router()
 
-router.get('/', auth, async (request, response) => {
+router.get('/', async (request, response) => {
   try {
     const allStudents = await student.getAll()
     response.json({
@@ -29,7 +27,7 @@ router.get('/', auth, async (request, response) => {
   }
 })
 
-router.post('/', auth, async (request, response) => {
+router.post('/', async (request, response) => {
   try {
     const newStudent = await student.create(request.body)
     response.json({
@@ -51,7 +49,7 @@ router.post('/', auth, async (request, response) => {
   }
 })
 
-router.post('/login', auth, async (request, response) => {
+router.post('/login', async (request, response) => {
   try {
     const { email, password } = request.body
     const token = await student.login(email, password)
@@ -74,7 +72,7 @@ router.post('/login', auth, async (request, response) => {
   }
 })
 
-router.delete('/:id', auth, async (request, response) => {
+router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
 

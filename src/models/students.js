@@ -28,7 +28,7 @@ const studentSchema = mongoose.Schema({
   password: {
     type: String,
     required: true,
-    pattern: /^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\d@$!%*?&]{8,}$/ // eslint-disable-line no-useless-escape
+    pattern: /^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\d@$!%*?&]{8,}$/
   },
   gender: {
     type: String
@@ -79,7 +79,7 @@ const studentSchema = mongoose.Schema({
   },
   tasks: {
     type: [{
-      finished: {
+      isFinished: {
         type: Boolean
       },
       data: {

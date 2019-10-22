@@ -1,12 +1,10 @@
 const express = require('express')
 
-const teacher = require('../usecases/teacher')
-
-const auth = require('../middlewares/auth')
+const teacher = require('../usecases/teachers')
 
 const router = express.Router()
 
-router.get('/', auth, async (request, response) => {
+router.get('/', async (request, response) => {
   try {
     const allTeachers = await teacher.getAll()
     response.json({
@@ -28,7 +26,7 @@ router.get('/', auth, async (request, response) => {
   }
 })
 
-router.post('/', auth, async (request, response) => {
+router.post('/', async (request, response) => {
   try {
     const newTeacher = await teacher.create(request.body)
     response.json({
@@ -50,7 +48,7 @@ router.post('/', auth, async (request, response) => {
   }
 })
 
-router.post('/login', auth, async (request, response) => {
+router.post('/login', async (request, response) => {
   try {
     const { email, password } = request.body
     const token = await teacher.login(email, password)
@@ -73,7 +71,7 @@ router.post('/login', auth, async (request, response) => {
   }
 })
 
-router.delete('/:id', auth, async (request, response) => {
+router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
 

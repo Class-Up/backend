@@ -1,7 +1,7 @@
 const bcrypt = require('../lib/bcrypt')
 const jwt = require('../lib/jwt')
 
-const Teacher = require('../models/teacher')
+const Teacher = require('../models/teachers')
 
 function create ({ firstName, lastName, email, picture, password }) {
   const hash = bcrypt.hash(password)
