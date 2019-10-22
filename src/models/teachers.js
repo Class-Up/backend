@@ -36,7 +36,11 @@ const teacherSchema = mongoose.Schema({
   dateUpdated: {
     type: Date,
     default: new Date()
-  }
+  },
+  groups: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Group'
+  }]
 })
 
 module.exports = mongoose.model('Teacher', teacherSchema)

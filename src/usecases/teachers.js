@@ -40,11 +40,16 @@ async function login (email, password) {
   return jwt.sign({ id: teacherFound.id })
 }
 
+function getGroups (teacherId) {
+  return Teacher.findById(teacherId).populate('groups')
+}
+
 module.exports = {
   create,
   getAll,
   getById,
   deleteById,
   updateById,
-  login
+  login,
+  getGroups
 }
