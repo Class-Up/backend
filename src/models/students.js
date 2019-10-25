@@ -80,9 +80,10 @@ const studentSchema = mongoose.Schema({
   tasks: {
     type: [{
       isFinished: {
-        type: Boolean
+        type: Boolean,
+        default: false
       },
-      data: {
+      taskId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task'
       }
