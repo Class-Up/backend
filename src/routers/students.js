@@ -21,7 +21,34 @@ router.get('/', async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'students.get',
+        route: '/'
+      }
+    })
+  }
+})
+
+router.get('/:id', async (request, response) => {
+  try {
+    const { id } = request.params
+    const studentFound = await student.getById(id)
+    response.json({
+      success: true,
+      message: 'Student Found',
+      data: {
+        student: studentFound
+      }
+    })
+  } catch (error) {
+    response.status(401)
+    response.json({
+      success: false,
+      message: 'something failed',
+      data: {
+        error: error.message,
+        endPoint: 'students.get',
+        route: '/:id'
       }
     })
   }
@@ -43,7 +70,9 @@ router.post('/', async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'students.post',
+        route: '/'
       }
     })
   }
@@ -66,7 +95,9 @@ router.post('/login', async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'students.post',
+        route: '/login'
       }
     })
   }
@@ -89,7 +120,34 @@ router.delete('/:id', async (request, response) => {
     response.json({
       success: false,
       message: 'Something failed',
-      error: error.message
+      error: error.message,
+      endPoint: 'students.delete',
+      route: '/:id'
+    })
+  }
+})
+
+router.patch('/:id/finishTask', async (request, response) => {
+  try {
+    const { id: studentId } = request.params
+    const taskId = request.body.taskId
+
+    const studentUpdated = await student.checkTaskAsFinished(studentId, taskId)
+
+    response.json({
+      success: true,
+      message: 'Student updated',
+      data: {
+        student: studentUpdated
+      }
+    })
+  } catch (error) {
+    response.json({
+      success: false,
+      message: 'Something failed',
+      error: error.message,
+      endPoint: 'students.patch',
+      route: '/:id/finishTask'
     })
   }
 })
