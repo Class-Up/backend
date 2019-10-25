@@ -20,7 +20,9 @@ router.get('/', async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'teacher.get',
+        route: '/'
       }
     })
   }
@@ -42,7 +44,9 @@ router.post('/', async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'teacher.post',
+        route: '/'
       }
     })
   }
@@ -65,7 +69,9 @@ router.post('/login', async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'teacher.post',
+        route: '/login'
       }
     })
   }
@@ -88,7 +94,9 @@ router.delete('/:id', async (request, response) => {
     response.json({
       success: false,
       message: 'Something failed',
-      error: error.message
+      error: error.message,
+      endPoint: 'teacher.delete',
+      route: '/:id'
     })
   }
 })
