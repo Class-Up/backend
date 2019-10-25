@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const taskSchema = mongoose.Schema({
+const groupSchema = mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -28,7 +28,14 @@ const taskSchema = mongoose.Schema({
   dateUpdated: {
     type: Date,
     default: new Date()
+  },
+  signCode: {
+    type: Number
+  },
+  teacher: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Teacher'
   }
 })
 
-module.exports = mongoose.model('Task', taskSchema)
+module.exports = mongoose.model('Group', groupSchema)
