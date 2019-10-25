@@ -9,6 +9,10 @@ const taskSchema = mongoose.Schema({
     type: Date,
     default: new Date()
   },
+  description: {
+    type: String,
+    required: true
+  },
   dateUpdated: {
     type: Date,
     default: new Date()
@@ -20,6 +24,10 @@ const taskSchema = mongoose.Schema({
   isDeleted: {
     type: Boolean,
     default: false
+  },
+  group: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Group'
   }
 })
 
