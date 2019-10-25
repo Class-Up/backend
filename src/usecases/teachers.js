@@ -3,8 +3,8 @@ const jwt = require('../lib/jwt')
 
 const Teacher = require('../models/teachers')
 
-function create ({ firstName, lastName, email, picture, password }) {
-  const hash = bcrypt.hash(password)
+async function create ({ firstName, lastName, email, picture, password }) {
+  const hash = await bcrypt.hash(password)
   return Teacher.create({
     firstName,
     lastName,
