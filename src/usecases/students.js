@@ -1,11 +1,11 @@
 
-const bcrypt = require('../lib/bcrypt')
 const jwt = require('../lib/jwt')
+const bcrypt = require('../lib/bcrypt')
 
 const Student = require('../models/students')
 
-function create ({ firstName, lastName, email, picture, age, password, gender, medals, schoolGrade }) {
-  const hash = bcrypt.hash(password)
+async function create ({ firstName, lastName, email, picture, age, password, gender, medals, schoolGrade }) {
+  const hash = await bcrypt.hash(password)
   return Student.create({
     firstName,
     lastName,
@@ -24,7 +24,7 @@ function getAll () {
 }
 
 function getById (id) {
-  return Student.findById(id)
+  return Student.findById(id).populate('groups').populate('tasks.taskId')
 }
 
 function deleteById (id) {
@@ -45,11 +45,33 @@ async function login (email, password) {
   return jwt.sign({ id: studentFound.id })
 }
 
+async function checkTaskAsFinished (studentId, taskId) {
+  const studentFound = await Student.findById(studentId)
+
+  const updatedTasks = studentFound.tasks.map(studentTask => {
+    const studentTaskIdString = studentTask.taskId.toString()
+
+    if (!taskId === studentTaskIdString) return studentTask
+    return {
+      isFinished: true,
+      taskId: studentTask.taskId,
+      _id: studentTask._id
+    }
+  })
+
+  await Student.findByIdAndUpdate(studentFound._id, {
+    tasks: updatedTasks
+  })
+
+  return Student.findById(studentFound._id)
+}
+
 module.exports = {
   create,
   getAll,
   getById,
   deleteById,
   updateById,
-  login
+  login,
+  checkTaskAsFinished
 }
