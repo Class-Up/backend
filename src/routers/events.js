@@ -3,11 +3,9 @@ const express = require('express')
 
 const event = require('../usecases/events')
 
-const auth = require('../middlewares/auth')
-
 const router = express.Router()
 
-router.get('/', auth, async (request, response) => {
+router.get('/', async (request, response) => {
   try {
     const allEvents = await event.getAll()
     response.json({
@@ -21,15 +19,17 @@ router.get('/', auth, async (request, response) => {
     response.status(401)
     response.json({
       success: false,
-      message: 'something failed',
+      message: 'Something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'events.get',
+        route: '/'
       }
     })
   }
 })
 
-router.get('/:id', auth, async (request, response) => {
+router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params
     const eventFound = await event.getById(id)
@@ -46,13 +46,15 @@ router.get('/:id', auth, async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'events.get',
+        route: '/:id'
       }
     })
   }
 })
 
-router.get('/:studentId', auth, async (request, response) => {
+router.get('/:studentId', async (request, response) => {
   try {
     const { studentId } = request.params
     const studentEvents = await event.getManyByStudentId(studentId)
@@ -69,13 +71,15 @@ router.get('/:studentId', auth, async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'events.get',
+        route: '/:studentId'
       }
     })
   }
 })
 
-router.post('/', auth, async (request, response) => {
+router.post('/', async (request, response) => {
   try {
     const newEvent = await event.create(request.body)
     response.json({
@@ -91,13 +95,15 @@ router.post('/', auth, async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'events.post',
+        route: '/'
       }
     })
   }
 })
 
-router.patch('/:id', auth, async (request, response) => {
+router.patch('/:id', async (request, response) => {
   try {
     const { id } = request.params
     const { body } = request
@@ -115,13 +121,15 @@ router.patch('/:id', auth, async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'events.patch',
+        route: '/:id'
       }
     })
   }
 })
 
-router.delete('/:id', auth, async (request, response) => {
+router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
 
@@ -138,7 +146,9 @@ router.delete('/:id', auth, async (request, response) => {
     response.json({
       success: false,
       message: 'Something failed',
-      error: error.message
+      error: error.message,
+      endPoint: 'events.delete',
+      route: '/:id'
     })
   }
 })

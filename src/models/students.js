@@ -28,7 +28,7 @@ const studentSchema = mongoose.Schema({
   password: {
     type: String,
     required: true,
-    pattern: /^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\d@$!%*?&]{8,}$/ // eslint-disable-line no-useless-escape
+    pattern: /^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\d@$!%*?&]{8,}$/
   },
   gender: {
     type: String
@@ -36,8 +36,16 @@ const studentSchema = mongoose.Schema({
   schoolGrade: {
     type: String
   },
-  medals: {
-    type: [String]
+  learningRate: {
+    kinesthetic: {
+      type: Number
+    },
+    auditive: {
+      type: Number
+    },
+    visual: {
+      type: Number
+    }
   },
   isDeleted: {
     type: Boolean,
@@ -50,6 +58,42 @@ const studentSchema = mongoose.Schema({
   dateUpdated: {
     type: Date,
     default: new Date()
+  },
+  medals: {
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Medal'
+    }]
+  },
+  notes: {
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Note'
+    }]
+  },
+  events: {
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Event'
+    }]
+  },
+  tasks: {
+    type: [{
+      isFinished: {
+        type: Boolean,
+        default: false
+      },
+      taskId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Task'
+      }
+    }]
+  },
+  groups: {
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Group'
+    }]
   }
 })
 

@@ -1,20 +1,17 @@
-
 const express = require('express')
 
-const student = require('../usecases/student')
-
-const auth = require('../middlewares/auth')
+const teacher = require('../usecases/teachers')
 
 const router = express.Router()
 
-router.get('/', auth, async (request, response) => {
+router.get('/', async (request, response) => {
   try {
-    const allStudents = await student.getAll()
+    const allTeachers = await teacher.getAll()
     response.json({
       success: true,
-      message: 'All students',
+      message: 'All Teachers',
       data: {
-        students: allStudents
+        teacher: allTeachers
       }
     })
   } catch (error) {
@@ -23,20 +20,22 @@ router.get('/', auth, async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'teacher.get',
+        route: '/'
       }
     })
   }
 })
 
-router.post('/', auth, async (request, response) => {
+router.post('/', async (request, response) => {
   try {
-    const newStudent = await student.create(request.body)
+    const newTeacher = await teacher.create(request.body)
     response.json({
       success: true,
-      message: 'Student Created',
+      message: 'Teacher Created',
       data: {
-        student: newStudent
+        teacher: newTeacher
       }
     })
   } catch (error) {
@@ -45,16 +44,18 @@ router.post('/', auth, async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'teacher.post',
+        route: '/'
       }
     })
   }
 })
 
-router.post('/login', auth, async (request, response) => {
+router.post('/login', async (request, response) => {
   try {
     const { email, password } = request.body
-    const token = await student.login(email, password)
+    const token = await teacher.login(email, password)
     response.json({
       success: true,
       message: 'Take your token',
@@ -68,30 +69,34 @@ router.post('/login', auth, async (request, response) => {
       success: false,
       message: 'something failed',
       data: {
-        error: error.message
+        error: error.message,
+        endPoint: 'teacher.post',
+        route: '/login'
       }
     })
   }
 })
 
-router.delete('/:id', auth, async (request, response) => {
+router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
 
-    const deletedStudent = await student.deleteById(id)
+    const deletedTeacher = await teacher.deleteById(id)
 
     response.json({
       success: true,
-      message: 'Student deleted',
+      message: 'Teacher deleted',
       data: {
-        student: deletedStudent
+        teacher: deletedTeacher
       }
     })
   } catch (error) {
     response.json({
       success: false,
       message: 'Something failed',
-      error: error.message
+      error: error.message,
+      endPoint: 'teacher.delete',
+      route: '/:id'
     })
   }
 })
