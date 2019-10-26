@@ -1,10 +1,10 @@
 const bcrypt = require('../lib/bcrypt')
 const jwt = require('../lib/jwt')
 
-const Teacher = require('../models/teacher')
+const Teacher = require('../models/teachers')
 
-function create ({ firstName, lastName, email, picture, password }) {
-  const hash = bcrypt.hash(password)
+async function create ({ firstName, lastName, email, picture, password }) {
+  const hash = await bcrypt.hash(password)
   return Teacher.create({
     firstName,
     lastName,
@@ -40,11 +40,16 @@ async function login (email, password) {
   return jwt.sign({ id: teacherFound.id })
 }
 
+function getGroups (teacherId) {
+  return Teacher.findById(teacherId).populate('groups')
+}
+
 module.exports = {
   create,
   getAll,
   getById,
   deleteById,
   updateById,
-  login
+  login,
+  getGroups
 }

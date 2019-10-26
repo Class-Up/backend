@@ -9,6 +9,10 @@ const taskSchema = mongoose.Schema({
     type: Date,
     default: new Date()
   },
+  description: {
+    type: String,
+    required: true
+  },
   dateUpdated: {
     type: Date,
     default: new Date()
@@ -17,27 +21,13 @@ const taskSchema = mongoose.Schema({
     type: Date,
     required: true
   },
-  studentId: {
-    required: true,
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'students'
-  },
-  isCompleted: {
+  isDeleted: {
     type: Boolean,
     default: false
   },
-  isDeleted: {
-    type: Boolean,
-    dafault: false
-  },
-  grade: {
-    type: Number,
-    required: true
-  },
-  topicId: {
-    required: true,
+  group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'topics'
+    ref: 'Group'
   }
 })
 

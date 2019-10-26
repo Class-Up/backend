@@ -3,13 +3,12 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path')
 
-const studentRouter = require('./routers/student')
+const studentRouter = require('./routers/students')
 const medalsRouter = require('./routers/medals')
 const notesRouter = require('./routers/notes')
-const scoresRouter = require('./routers/scores')
-const topicsRouter = require('./routers/topics')
 const tasksRouter = require('./routers/tasks')
-const teacherRouter = require('./routers/teacher')
+const teacherRouter = require('./routers/teachers')
+const groupsRouter = require('./routers/groups')
 
 const app = express()
 
@@ -19,10 +18,9 @@ app.use(express.json())
 app.use('/students', studentRouter)
 app.use('/notes', notesRouter)
 app.use('/medals', medalsRouter)
-app.use('/scores', scoresRouter)
-app.use('/topics', topicsRouter)
 app.use('/tasks', tasksRouter)
 app.use('/teachers', teacherRouter)
+app.use('/groups', groupsRouter)
 
 app.get('/', (request, response) => {
   const apiDocsHtmlPath = path.resolve(`${__dirname}/api.html`)

@@ -2,10 +2,6 @@
 const mongoose = require('mongoose')
 
 const noteSchema = mongoose.Schema({
-  studentId: {
-    type: String,
-    required: true
-  },
   title: {
     type: String,
     required: false

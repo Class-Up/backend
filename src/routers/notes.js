@@ -5,9 +5,7 @@ const note = require('../usecases/notes')
 
 const router = express.Router()
 
-const auth = require('../middlewares/auth')
-
-router.post('/', auth, async (request, response) => {
+router.post('/', async (request, response) => {
   try {
     const newNote = await note.create(request.body)
     response.json({
@@ -21,12 +19,14 @@ router.post('/', auth, async (request, response) => {
     response.json({
       success: false,
       message: 'Something Went Wrong',
-      error: error.message
+      error: error.message,
+      endPoint: 'notes.post',
+      route: '/'
     })
   }
 })
 
-router.get('/', auth, async (request, response) => {
+router.get('/', async (request, response) => {
   try {
     const allNotes = await note.getAll()
     response.json({
@@ -40,12 +40,14 @@ router.get('/', auth, async (request, response) => {
     response.json({
       success: false,
       message: 'Something Went Wrong',
-      error: error.message
+      error: error.message,
+      endPoint: 'notes.get',
+      route: '/'
     })
   }
 })
 
-router.get('/:id', auth, async (request, response) => {
+router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params
     const idNote = await note.getById(id)
@@ -60,12 +62,14 @@ router.get('/:id', auth, async (request, response) => {
     response.json({
       success: false,
       message: 'Something Went Wrong',
-      error: error.message
+      error: error.message,
+      endPoint: 'notes.get',
+      route: '/:id'
     })
   }
 })
 
-router.patch('/:id', auth, async (request, response) => {
+router.patch('/:id', async (request, response) => {
   try {
     const { id } = request.params
 
@@ -82,12 +86,14 @@ router.patch('/:id', auth, async (request, response) => {
     response.json({
       success: false,
       message: 'Something Went Wrong',
-      error: error.message
+      error: error.message,
+      endPoint: 'notes.patch',
+      route: '/:id'
     })
   }
 })
 
-router.delete('/:id', auth, async (request, response) => {
+router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
 
@@ -104,7 +110,9 @@ router.delete('/:id', auth, async (request, response) => {
     response.json({
       success: false,
       message: 'Something Went Wrong',
-      error: error.message
+      error: error.message,
+      endPoint: 'notes.delete',
+      route: '/:id'
     })
   }
 })

@@ -10,11 +10,6 @@ const eventSchema = mongoose.Schema({
     type: Date,
     required: true
   },
-  studentId: {
-    required: true,
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'students'
-  },
   isDeleted: {
     type: Boolean,
     default: false
