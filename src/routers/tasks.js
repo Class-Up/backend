@@ -1,28 +1,27 @@
-
 const express = require('express')
 
-const event = require('../usecases/events')
+const task = require('../usecases/tasks')
 
 const router = express.Router()
 
 router.get('/', async (request, response) => {
   try {
-    const allEvents = await event.getAll()
+    const allTasks = await task.getAll()
     response.json({
       success: true,
-      message: 'All events',
+      message: 'All Tasks',
       data: {
-        events: allEvents
+        task: allTasks
       }
     })
   } catch (error) {
     response.status(401)
     response.json({
       success: false,
-      message: 'Something failed',
+      message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.get',
+        endPoint: 'tasks.get',
         route: '/'
       }
     })
@@ -32,12 +31,12 @@ router.get('/', async (request, response) => {
 router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params
-    const eventFound = await event.getById(id)
+    const taskFound = await task.getById(id)
     response.json({
       success: true,
-      message: 'All events',
+      message: 'All Tasks',
       data: {
-        event: eventFound
+        task: taskFound
       }
     })
   } catch (error) {
@@ -47,7 +46,7 @@ router.get('/:id', async (request, response) => {
       message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.get',
+        endPoint: 'tasks.get',
         route: '/:id'
       }
     })
@@ -57,12 +56,12 @@ router.get('/:id', async (request, response) => {
 router.get('/:studentId', async (request, response) => {
   try {
     const { studentId } = request.params
-    const studentEvents = await event.getManyByStudentId(studentId)
+    const studentTasks = await task.getManyByStudentId(studentId)
     response.json({
       success: true,
-      message: 'All events of the student',
+      message: 'All Tasks of the student',
       data: {
-        events: studentEvents
+        task: studentTasks
       }
     })
   } catch (error) {
@@ -72,7 +71,7 @@ router.get('/:studentId', async (request, response) => {
       message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.get',
+        endPoint: 'tasks.get',
         route: '/:studentId'
       }
     })
@@ -81,12 +80,13 @@ router.get('/:studentId', async (request, response) => {
 
 router.post('/', async (request, response) => {
   try {
-    const newEvent = await event.create(request.body)
+    const { groupId, taskData } = request.body
+    const newTask = await task.create(groupId, taskData)
     response.json({
       success: true,
-      message: 'Event Created',
+      message: `Task Created and added to group ${groupId}`,
       data: {
-        event: newEvent
+        task: newTask
       }
     })
   } catch (error) {
@@ -96,7 +96,7 @@ router.post('/', async (request, response) => {
       message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.post',
+        endPoint: 'tasks.post',
         route: '/'
       }
     })
@@ -107,12 +107,12 @@ router.patch('/:id', async (request, response) => {
   try {
     const { id } = request.params
     const { body } = request
-    const newEvent = await event.updateById(id, body)
+    const newTask = await task.updateById(id, body)
     response.json({
       success: true,
-      message: 'Event Updated',
+      message: 'Task Updated',
       data: {
-        event: newEvent
+        task: newTask
       }
     })
   } catch (error) {
@@ -122,7 +122,7 @@ router.patch('/:id', async (request, response) => {
       message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.patch',
+        endPoint: 'tasks.patch',
         route: '/:id'
       }
     })
@@ -133,13 +133,13 @@ router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
 
-    const deletedEvent = await event.deleteById(id)
+    const deletedTask = await task.deleteById(id)
 
     response.json({
       success: true,
-      message: 'Event deleted',
+      message: 'Task deleted',
       data: {
-        event: deletedEvent
+        task: deletedTask
       }
     })
   } catch (error) {
@@ -147,7 +147,7 @@ router.delete('/:id', async (request, response) => {
       success: false,
       message: 'Something failed',
       error: error.message,
-      endPoint: 'events.delete',
+      endPoint: 'tasks.delete',
       route: '/:id'
     })
   }

@@ -1,28 +1,28 @@
 
 const express = require('express')
 
-const event = require('../usecases/events')
+const student = require('../usecases/students')
 
 const router = express.Router()
 
 router.get('/', async (request, response) => {
   try {
-    const allEvents = await event.getAll()
+    const allStudents = await student.getAll()
     response.json({
       success: true,
-      message: 'All events',
+      message: 'All students',
       data: {
-        events: allEvents
+        students: allStudents
       }
     })
   } catch (error) {
     response.status(401)
     response.json({
       success: false,
-      message: 'Something failed',
+      message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.get',
+        endPoint: 'students.get',
         route: '/'
       }
     })
@@ -32,12 +32,12 @@ router.get('/', async (request, response) => {
 router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params
-    const eventFound = await event.getById(id)
+    const studentFound = await student.getById(id)
     response.json({
       success: true,
-      message: 'All events',
+      message: 'Student Found',
       data: {
-        event: eventFound
+        student: studentFound
       }
     })
   } catch (error) {
@@ -47,33 +47,8 @@ router.get('/:id', async (request, response) => {
       message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.get',
+        endPoint: 'students.get',
         route: '/:id'
-      }
-    })
-  }
-})
-
-router.get('/:studentId', async (request, response) => {
-  try {
-    const { studentId } = request.params
-    const studentEvents = await event.getManyByStudentId(studentId)
-    response.json({
-      success: true,
-      message: 'All events of the student',
-      data: {
-        events: studentEvents
-      }
-    })
-  } catch (error) {
-    response.status(401)
-    response.json({
-      success: false,
-      message: 'something failed',
-      data: {
-        error: error.message,
-        endPoint: 'events.get',
-        route: '/:studentId'
       }
     })
   }
@@ -81,12 +56,12 @@ router.get('/:studentId', async (request, response) => {
 
 router.post('/', async (request, response) => {
   try {
-    const newEvent = await event.create(request.body)
+    const newStudent = await student.create(request.body)
     response.json({
       success: true,
-      message: 'Event Created',
+      message: 'Student Created',
       data: {
-        event: newEvent
+        student: newStudent
       }
     })
   } catch (error) {
@@ -96,23 +71,22 @@ router.post('/', async (request, response) => {
       message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.post',
+        endPoint: 'students.post',
         route: '/'
       }
     })
   }
 })
 
-router.patch('/:id', async (request, response) => {
+router.post('/login', async (request, response) => {
   try {
-    const { id } = request.params
-    const { body } = request
-    const newEvent = await event.updateById(id, body)
+    const { email, password } = request.body
+    const token = await student.login(email, password)
     response.json({
       success: true,
-      message: 'Event Updated',
+      message: 'Take your token',
       data: {
-        event: newEvent
+        token
       }
     })
   } catch (error) {
@@ -122,8 +96,8 @@ router.patch('/:id', async (request, response) => {
       message: 'something failed',
       data: {
         error: error.message,
-        endPoint: 'events.patch',
-        route: '/:id'
+        endPoint: 'students.post',
+        route: '/login'
       }
     })
   }
@@ -133,13 +107,13 @@ router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
 
-    const deletedEvent = await event.deleteById(id)
+    const deletedStudent = await student.deleteById(id)
 
     response.json({
       success: true,
-      message: 'Event deleted',
+      message: 'Student deleted',
       data: {
-        event: deletedEvent
+        student: deletedStudent
       }
     })
   } catch (error) {
@@ -147,8 +121,33 @@ router.delete('/:id', async (request, response) => {
       success: false,
       message: 'Something failed',
       error: error.message,
-      endPoint: 'events.delete',
+      endPoint: 'students.delete',
       route: '/:id'
+    })
+  }
+})
+
+router.patch('/:id/finishTask', async (request, response) => {
+  try {
+    const { id: studentId } = request.params
+    const taskId = request.body.taskId
+
+    const studentUpdated = await student.checkTaskAsFinished(studentId, taskId)
+
+    response.json({
+      success: true,
+      message: 'Student updated',
+      data: {
+        student: studentUpdated
+      }
+    })
+  } catch (error) {
+    response.json({
+      success: false,
+      message: 'Something failed',
+      error: error.message,
+      endPoint: 'students.patch',
+      route: '/:id/finishTask'
     })
   }
 })

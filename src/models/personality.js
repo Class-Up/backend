@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 const personalitySchema = mongoose.Schema({
-
   studentId: {
     type: String,
     required: true
@@ -18,7 +17,6 @@ const personalitySchema = mongoose.Schema({
     type: Date,
     default: new Date()
   }
-
 })
 
 module.exports = mongoose.model('Personality', personalitySchema)
