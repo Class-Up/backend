@@ -3,7 +3,7 @@ const personalityInsights = require('../lib/personality-insights')
 
 const Personality = require('../models/personalities')
 
-async function create ({ personalityText }) {
+async function create (personalityText) {
   const profileParams = {
     content: personalityText,
     contentType: 'text/plain;charset=utf-8',

@@ -2,12 +2,16 @@
 const express = require('express')
 
 const personality = require('../usecases/personalities')
+const student = require('../usecases/students')
 
 const router = express.Router()
 
 router.post('/', async (request, response) => {
   try {
-    const newPersonality = await personality.create(request.body)
+    const { studentId, personalityText } = request.body
+    const newPersonality = await personality.create(personalityText)
+    await student.addPersonalityById(studentId, newPersonality._id)
+
     response.json({
       success: true,
       message: 'Personality Created',
