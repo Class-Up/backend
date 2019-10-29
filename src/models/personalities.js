@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const personalitySchema = mongoose.Schema({
-  studentId: {
-    type: String,
-    required: true
-  },
   personality: {
     type: String,
     required: true
@@ -16,6 +12,10 @@ const personalitySchema = mongoose.Schema({
   dateUpdated: {
     type: Date,
     default: new Date()
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false
   }
 })
 
