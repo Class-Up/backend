@@ -94,6 +94,10 @@ const studentSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Group'
     }]
+  },
+  personality: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Personality'
   }
 })
 

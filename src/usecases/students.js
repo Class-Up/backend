@@ -66,6 +66,10 @@ async function checkTaskAsFinished (studentId, taskId) {
   return Student.findById(studentFound._id)
 }
 
+function addPersonalityById (studentId, personalityId) {
+  return Student.findByIdAndUpdate(studentId, { personality: personalityId })
+}
+
 module.exports = {
   create,
   getAll,
@@ -73,5 +77,6 @@ module.exports = {
   deleteById,
   updateById,
   login,
-  checkTaskAsFinished
+  checkTaskAsFinished,
+  addPersonalityById
 }
