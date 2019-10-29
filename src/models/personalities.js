@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const personalitySchema = mongoose.Schema({
-  personality: {
-    type: String,
+  data: {
+    type: Object,
     required: true
   },
   dateCreated: {

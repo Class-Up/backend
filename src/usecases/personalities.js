@@ -14,18 +14,15 @@ async function create ({ personalityText }) {
     language: 'es'
   }
 
-  // ToDo: Esta funcion regresa un warning
-  // con un await el catch del try-catch se activa
-  // con un then() y catch() entra al then pero no se resuelve la promesa tiempo
-  // con un callback no se resuelve la promesa a tiempo
-  const profileCreatedPromise = personalityInsights.profile(profileParams)
-
-  const profileCreated = await Promise.resolve(profileCreatedPromise)
-  // console.log('PER:', personalityCreated)
-
-  return Personality.create({
-    personality: profileCreated
-  })
+  return personalityInsights.profile(profileParams)
+    .then(profile => {
+      return Personality.create({
+        personality: profile.result.personality
+      })
+    })
+    .catch(error => {
+      throw new Error('Error:', error)
+    })
 }
 
 function getAll () {
