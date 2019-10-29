@@ -50,12 +50,12 @@ router.get('/', async (request, response) => {
 router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params
-    const personalitySearchById = await personality.getById(id)
+    const personalityFound = await personality.getById(id)
     response.json({
       success: true,
       message: 'This Is Your Personality',
       data: {
-        personality: personalitySearchById
+        personality: personalityFound
       }
     })
   } catch (error) {
@@ -70,8 +70,9 @@ router.get('/:id', async (request, response) => {
 router.patch('/:id', async (request, response) => {
   try {
     const { id } = request.params
+    const { personalityData } = request.body
 
-    const updatedPersonality = await personality.updateById(id)
+    const updatedPersonality = await personality.updateById(id, personalityData)
 
     response.json({
       success: true,
