@@ -3,6 +3,7 @@ const jwt = require('../lib/jwt')
 const bcrypt = require('../lib/bcrypt')
 
 const Student = require('../models/students')
+const Medals = require('../models/medals')
 
 async function create ({ firstName, lastName, email, picture, age, password, gender, medals, schoolGrade }) {
   const hash = await bcrypt.hash(password)
@@ -24,7 +25,10 @@ function getAll () {
 }
 
 function getById (id) {
-  return Student.findById(id).populate('groups').populate('tasks.taskId')
+  return Student.findById(id)
+    .populate('groups')
+    .populate('tasks.taskId')
+    .populate('medals')
 }
 
 function deleteById (id) {
@@ -70,6 +74,23 @@ function addPersonalityById (studentId, personalityId) {
   return Student.findByIdAndUpdate(studentId, { personality: personalityId })
 }
 
+async function giveMedal (studentId, medalId) {
+  const studentFound = await Student.findById(studentId)
+  const medalFound = await Medals.findById(medalId)
+
+  console.log('Stuent:', studentId)
+  console.log('Stuent:', studentFound)
+
+  const medals = [
+    ...studentFound.medals,
+    medalFound._id
+  ]
+
+  const updatedStudent = await Student.findByIdAndUpdate(studentId, { medals })
+
+  return Student.findById(studentId)
+}
+
 module.exports = {
   create,
   getAll,
@@ -77,6 +98,7 @@ module.exports = {
   deleteById,
   updateById,
   login,
+  giveMedal,
   checkTaskAsFinished,
   addPersonalityById
 }

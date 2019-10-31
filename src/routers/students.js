@@ -152,4 +152,28 @@ router.patch('/:id/finishTask', async (request, response) => {
   }
 })
 
+router.patch('/give-medal', async (request, response) => {
+  try {
+    const { studentId, medalId } = request.body
+
+    const studentUpdated = await student.giveMedal(studentId, medalId)
+
+    response.json({
+      success: true,
+      message: 'Student updated',
+      data: {
+        student: studentUpdated
+      }
+    })
+  } catch (error) {
+    response.json({
+      success: false,
+      message: 'Something failed',
+      error: error.message,
+      endPoint: 'students.patch',
+      route: '/:id/finishTask'
+    })
+  }
+})
+
 module.exports = router
