@@ -86,7 +86,7 @@ async function giveMedal (studentId, medalId) {
     medalFound._id
   ]
 
-  const updatedStudent = await Student.findByIdAndUpdate(studentId, { medals })
+  await Student.findByIdAndUpdate(studentId, { medals })
 
   return Student.findById(studentId)
 }
