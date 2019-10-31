@@ -1,10 +1,9 @@
 
 const Medal = require('../models/medals')
 
-function create ({ name, image, value }) {
+function create ({ name, value }) {
   return Medal.create({
     name,
-    image,
     value
   })
 }
