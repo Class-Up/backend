@@ -6,10 +6,6 @@ const medalSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  image: {
-    type: String,
-    required: true
-  },
   value: {
     type: Number,
     required: true
