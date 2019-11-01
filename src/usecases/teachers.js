@@ -19,7 +19,7 @@ function getAll () {
 }
 
 function getById (id) {
-  return Teacher.findById(id)
+  return Teacher.findById(id).populate('groups')
 }
 
 function deleteById (id) {
