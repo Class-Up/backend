@@ -1,14 +1,25 @@
 
 const Group = require('../models/groups')
 const Student = require('../models/students')
+const Teacher = require('../models/teachers')
 
-function create ({ name, topic, students, teacher }) {
-  return Group.create({
+async function create ({ name, topic, students, teacher }) {
+  const teacherFound = await Teacher.findById(teacher)
+  const groupCreated = await Group.create({
     name,
     topic,
     students,
     teacher
   })
+
+  const teacherGroups = [
+    ...teacherFound.groups,
+    groupCreated._id
+  ]
+
+  await Teacher.findByIdAndUpdate(teacher, { groups: teacherGroups })
+
+  return groupCreated
 }
 
 function getById (groupId) {
