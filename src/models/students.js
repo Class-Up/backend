@@ -37,15 +37,19 @@ const studentSchema = mongoose.Schema({
     type: String
   },
   learningRate: {
-    kinesthetic: {
-      type: Number
+    type: Object,
+    properties: {
+      kinesthetic: {
+        type: Number
+      },
+      auditive: {
+        type: Number
+      },
+      visual: {
+        type: Number
+      }
     },
-    auditive: {
-      type: Number
-    },
-    visual: {
-      type: Number
-    }
+    default: {}
   },
   isDeleted: {
     type: Boolean,

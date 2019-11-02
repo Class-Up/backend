@@ -55,10 +55,11 @@ async function addStudent (groupId, newStudentId) {
   return Group.findOneAndUpdate(groupId, { students })
 }
 
-function makePublic ({ groupId }) {
+async function makePublic (groupId) {
   const signCode = Math.floor((Math.random() * 1000) + 1)
 
-  return Group.findByIdAndUpdate(groupId, { signCode })
+  await Group.findByIdAndUpdate(groupId, { signCode })
+  return Group.findById(groupId)
 }
 
 async function enroll ({ studentId, signCode }) {
