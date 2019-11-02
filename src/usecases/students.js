@@ -5,7 +5,7 @@ const bcrypt = require('../lib/bcrypt')
 const Student = require('../models/students')
 const Medals = require('../models/medals')
 
-async function create ({ firstName, lastName, email, picture, age, password, gender, medals, schoolGrade }) {
+async function create ({ firstName, lastName, email, picture, age, password, gender, medals, schoolGrade, learningRate }) {
   const hash = await bcrypt.hash(password)
   return Student.create({
     firstName,
@@ -16,7 +16,8 @@ async function create ({ firstName, lastName, email, picture, age, password, gen
     password: hash,
     gender,
     medals,
-    schoolGrade
+    schoolGrade,
+    learningRate
   })
 }
 

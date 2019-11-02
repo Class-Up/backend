@@ -1,14 +1,25 @@
 
 const Group = require('../models/groups')
 const Student = require('../models/students')
+const Teacher = require('../models/teachers')
 
-function create ({ name, topic, students, teacher }) {
-  return Group.create({
+async function create ({ name, topic, students, teacher }) {
+  const teacherFound = await Teacher.findById(teacher)
+  const groupCreated = await Group.create({
     name,
     topic,
     students,
     teacher
   })
+
+  const teacherGroups = [
+    ...teacherFound.groups,
+    groupCreated._id
+  ]
+
+  await Teacher.findByIdAndUpdate(teacher, { groups: teacherGroups })
+
+  return groupCreated
 }
 
 function getById (groupId) {
@@ -44,10 +55,11 @@ async function addStudent (groupId, newStudentId) {
   return Group.findOneAndUpdate(groupId, { students })
 }
 
-function makePublic ({ groupId }) {
+async function makePublic (groupId) {
   const signCode = Math.floor((Math.random() * 1000) + 1)
 
-  return Group.findByIdAndUpdate(groupId, { signCode })
+  await Group.findByIdAndUpdate(groupId, { signCode })
+  return Group.findById(groupId)
 }
 
 async function enroll ({ studentId, signCode }) {

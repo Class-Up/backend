@@ -78,9 +78,10 @@ router.post('/', async (request, response) => {
   }
 })
 
-router.patch('/', async (request, response) => {
+router.patch('/:id/make-public', async (request, response) => {
   try {
-    const publicGroup = await groups.makePublic(request.body)
+    const { id } = request.params
+    const publicGroup = await groups.makePublic(id)
     response.json({
       success: true,
       message: 'Public Group',
