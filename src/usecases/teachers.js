@@ -22,11 +22,11 @@ function getAll () {
 async function getById (id) {
   const teacherFound = await Teacher.findById(id)
   const groupPromises = teacherFound.groups.map(group => {
-    return Group.findOne(group).populate('students')
+    return Group.findById(group).populate('students')
   })
   const groups = await Promise.all(groupPromises)
 
-  const students = groups.reduce((students, group) => {
+  const students = groups.reduce((students, group = {}) => {
     return [
       ...students,
       ...group.students
