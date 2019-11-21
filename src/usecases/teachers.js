@@ -2,7 +2,6 @@ const bcrypt = require('../lib/bcrypt')
 const jwt = require('../lib/jwt')
 
 const Teacher = require('../models/teachers')
-const Group = require('../models/groups')
 
 async function create ({ firstName, lastName, email, picture, password }) {
   const hash = await bcrypt.hash(password)
@@ -20,24 +19,16 @@ function getAll () {
 }
 
 async function getById (id) {
-  const teacherFound = await Teacher.findById(id)
-  const groupPromises = teacherFound.groups.map(group => {
-    return Group.findById(group).populate('students')
-  })
-  const groups = await Promise.all(groupPromises)
-
-  const students = groups.reduce((students, group = {}) => {
-    return [
-      ...students,
-      ...group.students
-    ]
-  }, [])
-
-  return {
-    ...teacherFound._doc,
-    groups,
-    students
-  }
+  return Teacher.findById(id)
+    .populate({
+      path: 'groups',
+      populate: {
+        path: 'students',
+        populate: {
+          path: 'medals'
+        }
+      }
+    })
 }
 
 function deleteById (id) {

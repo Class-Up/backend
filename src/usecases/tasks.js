@@ -48,7 +48,7 @@ function getManyByStudentId (studentId) {
 }
 
 function getById (id) {
-  return Task.findById(id).populate.group
+  return Task.findById(id).populate('group')
 }
 
 function deleteById (id) {
